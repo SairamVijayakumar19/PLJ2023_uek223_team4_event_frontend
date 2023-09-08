@@ -11,17 +11,17 @@ export type eventData = {
 const EventService = {
   getEvent: async () => {
     try {
-      const response = await api.get('/events');
-      return response.data;
+      const response = await api.get('api/events');
+      console.log("respose",response)
+        return response.data;
     } catch (error) {
       console.error("Fehler beim Abrufen der Events: ", error);
-      return [];
     }
   },
 
   getById: async (id: string | number) => {
     try {
-      const response = await api.get(`/events/${id}`);
+      const response = await api.get(`api/events/${id}`);
       return response.data;
     } catch (error) {
       console.error("Fehler beim Abrufen des Events nach ID: ", error);
@@ -31,7 +31,7 @@ const EventService = {
 
   deleteEventById: async (id: string | number) => {
     try {
-      await api.delete(`/events/${id}`);
+      await api.delete(`api/events/${id}`);
       console.log("Event erfolgreich gelöscht");
     } catch (error) {
       console.error("Fehler beim Löschen des Events: ", error);
@@ -41,7 +41,7 @@ const EventService = {
 
   createEvent: async (params: eventData) => {
     try {
-      const res = await api.post("/events", params);
+      const res = await api.post("api/events", params);
       if (res && res.status === 200) {
         console.log("Event erfolgreich erstellt");
       }
@@ -53,7 +53,7 @@ const EventService = {
 
   updateEvent: async (params: eventData) => {
     try {
-      const res = await api.put(`/events/${params.id}`, params);
+      const res = await api.put(`api/events/${params.id}`, params);
       if (res && res.status === 200) {
         console.log("Event erfolgreich aktualisiert");
       }

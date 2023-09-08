@@ -27,9 +27,8 @@ export default function SimplePaper() {
         <Grid container spacing={1}>
           {events.map((event, index) => (
             <Grid item key={index} xs={2} marginTop={"10px"} marginLeft={"45px"}>
-              <Paper elevation={0} sx={{ padding: 2 }}>
+              <Paper elevation={5} sx={{ padding: 2 }}>
                 <div>{event.eventName}</div>
-                <div>{event.guestList}</div>
               </Paper>
             </Grid>
           ))}
