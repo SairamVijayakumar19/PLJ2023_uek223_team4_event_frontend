@@ -1,12 +1,6 @@
 import api from "../config/Api";
+import { eventData } from "../types/models/Event.model";
 
-export type eventData = {
-  id: number,
-  guestList: string,
-  eventName: string,
-  date: string,
-  location: string
-};
 
 const EventService = {
   getEvent: async () => {
