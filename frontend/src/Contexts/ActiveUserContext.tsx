@@ -145,6 +145,7 @@ export const ActiveUserContextProvider = ({
   };
 
   /**
+   * tests
    * Request the user data for the currently active user from the api
    * and save it to the context-state.
    */
