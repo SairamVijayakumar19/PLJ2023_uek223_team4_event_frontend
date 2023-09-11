@@ -33,7 +33,7 @@ const EventService = {
   },
 
   updateEvent: async (params: eventData) => {
-    return api.put(`/api/events${params.id}`, params);
+    return api.put(`/api/events/${params.id}`, params);
   },
 };
 
