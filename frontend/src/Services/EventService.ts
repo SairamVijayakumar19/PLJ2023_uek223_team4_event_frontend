@@ -21,7 +21,7 @@ const EventService = {
   },
 
   deleteEventById: async (id: string | number) => {
-    return api.delete(`/api/events${id}`);
+    return api.delete(`/api/events/${id}`);
   },
 
   createEvent: async (params: eventData) => {
