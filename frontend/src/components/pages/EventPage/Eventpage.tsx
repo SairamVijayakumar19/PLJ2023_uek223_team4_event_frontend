@@ -4,8 +4,8 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
-import { eventData } from '../../../types/models/Event.model';
 import EventService from '../../../Services/EventService';
+import { eventData } from '../../../types/models/Event.model';
 
 export default function SimplePaper() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export default function SimplePaper() {
   const [events, setEvents] = useState<eventData[]>([]);
 
   useEffect(() => {
-    // Load events when the component mounts
+
     loadEvents();
   }, []);
 
@@ -33,7 +33,6 @@ export default function SimplePaper() {
   const deleteEvent = async (id: string | number) => {
     try {
       await EventService.deleteEventById(id);
-      // Reload events after deleting
       loadEvents();
       console.log('Event successfully deleted');
     } catch (error) {
