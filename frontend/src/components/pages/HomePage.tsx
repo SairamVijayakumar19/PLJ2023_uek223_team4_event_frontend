@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
-import logo from '../../logo1.png';
 
+// Test comment
 const HomePage = () => {
   return (
     <Box
