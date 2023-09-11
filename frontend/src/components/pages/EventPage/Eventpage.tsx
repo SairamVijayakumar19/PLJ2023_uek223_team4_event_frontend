@@ -6,7 +6,6 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { eventData } from "../../../types/models/Event.model";
 import EventService from "../../../Services/EventService";
-import EventForm from "../../molecules/UserForm/EventForm";
 
 export default function SimplePaper() {
   const navigate = useNavigate();
@@ -65,6 +64,7 @@ export default function SimplePaper() {
                 <div>Date: {event.date}</div>
                 <br />
                 <button>Edit Event</button>
+                <button>Delete Event</button>
               </Paper>
             </Grid>
           ))}

@@ -1,108 +1,86 @@
-import { useFormik } from 'formik';
-import { eventData } from '../../../types/models/Event.model';
-import { Box, Button, TextField } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { object, string } from 'yup';
+import { useFormik } from "formik";
+import { useNavigate, useParams } from "react-router-dom";
+import EventService from "../../../Services/EventService";
 
-interface EventProps {
-  event: eventData;
-  submitActionHandler: (values: eventData) => void;
-}
+export default function EventForm() {
+  const { EventId } = useParams();
 
-const EventForm = ({ event, submitActionHandler }: EventProps) => {
   const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
-        id: event.id,
-        eventName: event.eventName || '',
-        date: event.date || '',
-        location: event.location || '',
-        guestList: ''
+      id: "",
+      guestList: "",
+      eventName: '', 
+      date: '',
+      location: '',
     },
-    validationSchema: object({
-      eventName: string().required().min(2).max(50),
-      date: string().required(),
-      location: string().required(),
-    }),
-    onSubmit: (values: eventData) => {
-      submitActionHandler(values);
+
+    onSubmit: (values) => {
+      handleSubmit(values.eventName, values.date, values.location);
     },
-    enableReinitialize: true,
   });
 
+  const handleSubmit = (eventName: string, date: string, location: string) => {
+    EventService.createEvent({
+      eventName: eventName,
+      date: date,
+      location: location,
+      id: "",
+      guestList: "",
+    })
+      .then((response) => {
+        console.log("response", response);
+        navigate("/event");
+      })
+      .catch((e) => {
+        postMessage(e.response.data);
+      });
+  };
+
   return (
-    <>
-      <form onSubmit={formik.handleSubmit}>
-        <Box sx={{ paddingTop: '15px' }}>
-          <TextField
-            id='eventName'
-            label='Event Name'
-            variant='outlined'
-            sx={{ paddingRight: '10px' }}
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            error={Boolean(formik.touched.eventName && formik.errors.eventName)}
-            value={formik.values.eventName}
-          />
-          {formik.errors.eventName && formik.touched.eventName ? (
-            <div style={{ color: 'red' }}>{formik.errors.eventName}</div>
-          ) : null}
-          <TextField
-            id='date'
-            label='Date'
-            variant='outlined'
-            sx={{ paddingRight: '10px' }}
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            error={Boolean(formik.touched.date && formik.errors.date)}
-            value={formik.values.date}
-          />
-          {formik.errors.date && formik.touched.date ? (
-            <div style={{ color: 'red' }}>{formik.errors.date}</div>
-          ) : null}
-          <TextField
-            id='location'
-            label='Location'
-            variant='outlined'
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            error={Boolean(formik.touched.location && formik.errors.location)}
-            value={formik.values.location}
-          />
+    <form onSubmit={formik.handleSubmit}>
+      <div>
+        <h1>New Event</h1>
 
-          {formik.errors.location && formik.touched.location ? (
-            <div style={{ color: 'red' }}>{formik.errors.location}</div>
-          ) : null}
-        </Box>
-        <div>
-          <Button
-            sx={{ marginTop: '15px', marginRight: '10px' }}
-            variant='contained'
-            color='success'
-            type='submit'
-            disabled={!(formik.dirty && formik.isValid)}
-            onClick={() => {
-                navigate('/event');
-              }}
-          >
-            {event.id ? 'Save' : 'Add'}
-            
-          </Button>
-          <Button
-            sx={{ marginTop: '15px' }}
-            variant='contained'
-            color='error'
-            onClick={() => {
-              navigate('/event');
-            }}
-          >
-            Cancel
-          </Button>
-        </div>
-      </form>
-    </>
+        <label htmlFor="eventName">Event Name</label>
+
+        <input
+          id="eventName"
+          name="eventName" 
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.eventName}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="date">Date</label>
+
+        <input
+          id="date"// Field name should match your initialValues
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.date}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="location">Location</label>
+
+        <input
+          id="location"
+          name="location" // Field name should match your initialValues
+          type="text"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.location}
+        />
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
   );
-};
-
-export default EventForm;
+}

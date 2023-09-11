@@ -6,7 +6,6 @@ import UserTable from "../components/pages/UserPage/UserTable";
 import UserPage from "../components/pages/UserPage/UserPage";
 import Eventpage from "../components/pages/EventPage/Eventpage";
 import EventForm from "../components/molecules/UserForm/EventForm";
-import { eventData } from "../types/models/Event.model";
 
 /**
  * Router component renders a route switch with all available pages
@@ -21,6 +20,7 @@ const Router = () => {
     <Routes>
       <Route path={"/"} element={<HomePage />} />
       <Route path={"/login"} element={<LoginPage />} />
+      <Route path={"/addevent"} element={<EventForm />} />
 
 
       <Route
@@ -39,20 +39,8 @@ const Router = () => {
           <PrivateRoute authorities={[]} element={<Eventpage />}></PrivateRoute>
         }
       />
-      <Route
-        path="/addevent"
-        element={
-          <PrivateRoute authorities={[]} element={<EventForm event={{
-            id: "",
-            guestList: "",
-            eventName: "",
-            date: "",
-            location: ""
-          }} submitActionHandler={function (values: eventData): void {
-            throw new Error("Function not implemented.");
-          } } />}></PrivateRoute>
-        }
-      />
+     
+    
       <Route
         path="/useredit/:userId"
         element={
