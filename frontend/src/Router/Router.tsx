@@ -20,9 +20,11 @@ const Router = () => {
     <Routes>
       <Route path={"/"} element={<HomePage />} />
       <Route path={"/login"} element={<LoginPage />} />
-      <Route path={"/addevent"} element={<EventForm />} />
 
-
+      <Route
+        path={"/addevent"}
+        element={<PrivateRoute authorities={[]} element={<EventForm />} />}
+      />
       <Route
         path={"/users"}
         element={<PrivateRoute authorities={[]} element={<UserTable />} />}
