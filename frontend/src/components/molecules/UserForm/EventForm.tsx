@@ -9,8 +9,6 @@ export default function EventForm() {
 
   const formik = useFormik({
     initialValues: {
-      id: "",
-      guestList: "",
       eventName: '', 
       date: '',
       location: '',
@@ -26,8 +24,7 @@ export default function EventForm() {
       eventName: eventName,
       date: date,
       location: location,
-      id: "",
-      guestList: "",
+      guestList: []
     })
       .then((response) => {
         console.log("response", response);
@@ -59,7 +56,7 @@ export default function EventForm() {
         <label htmlFor="date">Date</label>
 
         <input
-          id="date"// Field name should match your initialValues
+          id="date"
           type="text"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -72,7 +69,7 @@ export default function EventForm() {
 
         <input
           id="location"
-          name="location" // Field name should match your initialValues
+          name="location"
           type="text"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}

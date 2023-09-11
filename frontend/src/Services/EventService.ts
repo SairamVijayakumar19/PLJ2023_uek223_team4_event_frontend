@@ -1,5 +1,6 @@
+import { error } from "console";
 import api from "../config/Api";
-import { eventData } from "../types/models/Event.model";
+import { createEventData, eventData } from "../types/models/Event.model";
 
 const EventService = {
   getEvent: async () => {
@@ -24,11 +25,13 @@ const EventService = {
     return api.delete(`/api/events/${id}`);
   },
 
-  createEvent: async (params: eventData) => {
+  createEvent: async (params: createEventData) => {
     const res = await api.post("/api/events", params);
 
     if (res && res.status === 200) {
-      console.log("event successfully created");
+
+      console.log("image successfully created");
+
     }
   },
 
