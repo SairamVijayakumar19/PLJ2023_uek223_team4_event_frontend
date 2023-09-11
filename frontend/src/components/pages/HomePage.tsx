@@ -1,21 +1,29 @@
-import { Box, flexbox } from '@mui/system';
+import React from 'react';
+import { Box, Typography, Button } from '@mui/material';
 import logo from '../../logo1.png';
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <Box
-      display='flex'
-      alignItems='center'
-      justifyContent='center'
-      flexDirection={'column'}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      minHeight="100vh"
+      textAlign="center"
     >
-      <h1>Welcome to the Homepage</h1>
-      <img
-        src={logo}
-        style={{ filter: 'invert(100%)' }}
-        className='App-logo'
-        alt='logo'
-      />
+      <Typography variant='h3' >
+        Welcome to OurSpace
+      </Typography>
+      <Typography variant='body1' paragraph>
+        Discover, Connect, Share - Your Space for Everything!
+      </Typography>
+      <Button variant='contained' color='primary'>
+        Get Started
+      </Button>
+
     </Box>
   );
 }
+
+export default HomePage;

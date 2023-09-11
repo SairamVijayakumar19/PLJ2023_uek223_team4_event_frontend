@@ -4,7 +4,8 @@ import PrivateRoute from "./PrivateRoute";
 import HomePage from "../components/pages/HomePage";
 import UserTable from "../components/pages/UserPage/UserTable";
 import UserPage from "../components/pages/UserPage/UserPage";
-import Eventpage from "../components/pages/Eventpage";
+import Eventpage from "../components/pages/EventPage/Eventpage";
+import EventForm from "../components/molecules/UserForm/EventForm";
 
 /**
  * Router component renders a route switch with all available pages
@@ -19,8 +20,7 @@ const Router = () => {
     <Routes>
       <Route path={"/"} element={<HomePage />} />
       <Route path={"/login"} element={<LoginPage />} />
-
-      <Route path={"/event"} element={<Eventpage />} />
+      <Route path={"/addevent"} element={<EventForm />} />
 
 
       <Route
@@ -33,6 +33,14 @@ const Router = () => {
           <PrivateRoute authorities={[]} element={<UserPage />}></PrivateRoute>
         }
       />
+      <Route
+        path="/event"
+        element={
+          <PrivateRoute authorities={[]} element={<Eventpage />}></PrivateRoute>
+        }
+      />
+     
+    
       <Route
         path="/useredit/:userId"
         element={
