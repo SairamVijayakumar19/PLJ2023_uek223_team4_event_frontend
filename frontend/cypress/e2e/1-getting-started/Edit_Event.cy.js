@@ -52,15 +52,15 @@ it('should fill in email and password fields', () => {
 
 
   cy.get('#\\:r5\\:').type('Ruben');
-  cy.get('#\\:r7\\:').type('1298');
+  cy.get('#\\:r7\\:').type('2001-12-20');
   cy.get('#\\:r9\\:').type('Züri');
   cy.wait(2000)
   cy.get(".MuiBox-root > .MuiButtonBase-root").click();
   cy.wait(2000)
-  cy.get(":nth-child(5) > .MuiPaper-root > :nth-child(5)").click();
+  cy.get(":nth-child(4) > .MuiPaper-root > :nth-child(6)").click();
   cy.wait(2000)
   cy.get('#\\:rb\\:').type('Noah');
-  cy.get('#\\:rd\\:').type('19-11-2002');
+  cy.get('#\\:rd\\:').type('2002-12-21');
   cy.get('#\\:rf\\:').type('Wädi');
 
  

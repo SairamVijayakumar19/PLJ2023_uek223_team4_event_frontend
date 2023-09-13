@@ -52,7 +52,7 @@ it('should fill in email and password fields', () => {
 
   cy.wait(2000)
   cy.get('#\\:r5\\:').type('Ja');
-  cy.get('#\\:r7\\:').type('dsljidjs');
+  cy.get('#\\:r7\\:').type('2002-12-12');
   cy.get('#\\:r9\\:').type('sdsdsd');
 
   cy.get(".MuiBox-root > .MuiButtonBase-root").click();
