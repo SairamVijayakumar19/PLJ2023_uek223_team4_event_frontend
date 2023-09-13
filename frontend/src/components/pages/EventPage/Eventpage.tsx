@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -6,9 +6,12 @@ import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import EventService from '../../../Services/EventService';
 import { eventData } from '../../../types/models/Event.model';
+import { User } from '../../../types/models/User.model';
+import ActiveUserContext from '../../../Contexts/ActiveUserContext';
 
 export default function SimplePaper() {
   const navigate = useNavigate();
+  const context = useContext(ActiveUserContext);
 
   const handleAdd = () => {
     navigate('../addevent/');
@@ -28,7 +31,12 @@ export default function SimplePaper() {
       console.error('Fehler beim Abrufen der Events: ', error);
     }
   };
+  function userCanEditEvent(post:eventData, user:User){
+    if(post.author ){
+    return user.id === post.author.id
 
+    }
+  }
   const deleteEvent = async (id: string | number) => {
     try {
       await EventService.deleteEventById(id);
@@ -58,8 +66,9 @@ export default function SimplePaper() {
                 <div>Location: {event.location}</div>
                 <div>Date: {event.date}</div>
                 <br />
-                <button onClick={() => navigate(`/editevent/${event.id}`)}>Edit Event</button>
-                <button onClick={() => deleteEvent(event.id)}>Delete Event</button>
+                {context.user && userCanEditEvent(event, context.user ) && <button onClick={() => navigate(`/editevent/${event.id}`)}>Edit Event</button>}
+                {context.user && userCanEditEvent(event, context.user ) && <button onClick={() => deleteEvent(event.id)}>Delete Event</button>}
+                
               </Paper>
             </Grid>
           ))}
@@ -67,4 +76,4 @@ export default function SimplePaper() {
       </Box>
     </div>
   );
-}
+          }

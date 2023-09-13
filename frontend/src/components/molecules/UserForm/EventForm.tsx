@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Box, Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
 import EventService from '../../../Services/EventService';
 import { createEventData, eventData } from '../../../types/models/Event.model';
+import { User } from '../../../types/models/User.model';
+import ActiveUserContext from '../../../Contexts/ActiveUserContext';
 
 export default function EventForm() {
   const { eventId } = useParams();
   const navigate = useNavigate();
+  const { user } = useContext(ActiveUserContext);
 
   const [event, setEvent] = useState<eventData>({
     id: '',
     eventName: '',
     date: '',
     location: '',
+    author: user,
   });
 
+  
+
+  
 
   const formik = useFormik({
     initialValues: {
@@ -24,6 +31,7 @@ export default function EventForm() {
       eventName: event.eventName,
       date: event.date,
       location: event.location,
+      author: event.author,
     },
     validationSchema: object({
       eventName: string().required().min(2).max(50),
@@ -48,6 +56,7 @@ export default function EventForm() {
       } else {
         await EventService.createEvent(values);
         console.log('Event erfolgreich hinzugefügt');
+        console.log(values)
       }
       navigate('/event');
     } catch (error) {

@@ -4,6 +4,7 @@ export interface eventData {
     eventName: string;
     date: string;
     location: string;
+    author: User | null;
   }
 
   export type createEventData = Omit<eventData,"id">
