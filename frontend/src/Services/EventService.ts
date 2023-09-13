@@ -38,6 +38,10 @@ const EventService = {
   updateEvent: async (params: eventData) => {
     return api.put(`/api/events/${params.id}`, params);
   },
+
+  getEventParticipantsEndpoint: (eventId: string) => {
+    return `/api/events/${eventId}/participants`;
+  },
 };
 
 export default EventService;

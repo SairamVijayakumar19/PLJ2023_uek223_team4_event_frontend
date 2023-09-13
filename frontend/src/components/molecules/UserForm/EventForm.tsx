@@ -11,7 +11,8 @@ import ActiveUserContext from '../../../Contexts/ActiveUserContext';
 export default function EventForm() {
   const { eventId } = useParams();
   const navigate = useNavigate();
-  const { user } = useContext(ActiveUserContext);
+  const { user } = useContext(ActiveUserContext)
+
 
   const [event, setEvent] = useState<eventData>({
     id: '',
@@ -19,11 +20,8 @@ export default function EventForm() {
     date: '',
     location: '',
     author: user,
+    guestList: []
   });
-
-  
-
-  
 
   const formik = useFormik({
     initialValues: {
@@ -32,11 +30,13 @@ export default function EventForm() {
       date: event.date,
       location: event.location,
       author: event.author,
+      guestList: event.guestList
     },
     validationSchema: object({
       eventName: string().required().min(2).max(50),
       date: string().required(),
       location: string().required(),
+      guestList: string(),
     }),
     onSubmit: (values: eventData) => {
       handleSubmit(values);
