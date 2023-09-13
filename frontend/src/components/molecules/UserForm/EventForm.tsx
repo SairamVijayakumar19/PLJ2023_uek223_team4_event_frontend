@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Box, Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
-import { object, string } from 'yup';
+import { date, object, string } from 'yup';
 import EventService from '../../../Services/EventService';
 import { createEventData, eventData } from '../../../types/models/Event.model';
 import { User } from '../../../types/models/User.model';
@@ -23,6 +23,8 @@ export default function EventForm() {
     guestList: []
   });
 
+
+
   const formik = useFormik({
     initialValues: {
       id: event.id,
@@ -34,7 +36,7 @@ export default function EventForm() {
     },
     validationSchema: object({
       eventName: string().required().min(2).max(50),
-      date: string().required(),
+      date: string().required().matches(/^(\d{4})-(\d{2})-(\d{2})$/, 'Bitte geben Sie ein gültiges Datum im Format JJJJ-MM-TT ein.'),
       location: string().required(),
       guestList: string(),
     }),
