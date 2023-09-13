@@ -41,7 +41,10 @@ const Router = () => {
           <PrivateRoute authorities={[]} element={<Eventpage />}></PrivateRoute>
         }
       />
-     
+      <Route 
+        path="/editevent/:eventId" element={
+        <PrivateRoute authorities={[]} element={<EventForm />}></PrivateRoute>} />
+
     
       <Route
         path="/useredit/:userId"

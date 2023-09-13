@@ -17,7 +17,6 @@ export default function SimplePaper() {
   const [events, setEvents] = useState<eventData[]>([]);
 
   useEffect(() => {
-
     loadEvents();
   }, []);
 
@@ -34,10 +33,13 @@ export default function SimplePaper() {
     try {
       await EventService.deleteEventById(id);
       loadEvents();
-      console.log('Event successfully deleted');
+      console.log('Event erfolgreich gelöscht');
     } catch (error) {
       console.error('Fehler beim Löschen des Events: ', error);
     }
+  };
+  const handleEdit = (id: string) => {
+    navigate('/editevent' + id);
   };
 
   return (
