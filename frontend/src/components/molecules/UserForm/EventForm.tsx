@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Box, Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
-import { object, string } from 'yup';
+import { date, object, string } from 'yup';
 import EventService from '../../../Services/EventService';
 import { createEventData, eventData } from '../../../types/models/Event.model';
 import { User } from '../../../types/models/User.model';
@@ -11,7 +11,8 @@ import ActiveUserContext from '../../../Contexts/ActiveUserContext';
 export default function EventForm() {
   const { eventId } = useParams();
   const navigate = useNavigate();
-  const { user } = useContext(ActiveUserContext);
+  const { user } = useContext(ActiveUserContext)
+
 
   const [event, setEvent] = useState<eventData>({
     id: '',
@@ -19,11 +20,10 @@ export default function EventForm() {
     date: '',
     location: '',
     author: user,
+    guestList: []
   });
 
-  
 
-  
 
   const formik = useFormik({
     initialValues: {
@@ -32,11 +32,13 @@ export default function EventForm() {
       date: event.date,
       location: event.location,
       author: event.author,
+      guestList: event.guestList
     },
     validationSchema: object({
       eventName: string().required().min(2).max(50),
-      date: string().required(),
+      date: string().required().matches(/^(\d{4})-(\d{2})-(\d{2})$/, 'Bitte geben Sie ein gültiges Datum im Format JJJJ-MM-TT ein.'),
       location: string().required(),
+      guestList: string(),
     }),
     onSubmit: (values: eventData) => {
       handleSubmit(values);

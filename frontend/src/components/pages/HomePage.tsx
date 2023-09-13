@@ -1,8 +1,11 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 // Test comment
 const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <Box
       display="flex"
@@ -18,7 +21,10 @@ const HomePage = () => {
       <Typography variant='body1' paragraph>
         Discover, Connect, Share - Your Space for Everything!
       </Typography>
-      <Button variant='contained' color='primary'>
+      <Button variant='contained' color='primary'
+      onClick={() => {
+        navigate('/login');
+      }}>
         Get Started
       </Button>
 
