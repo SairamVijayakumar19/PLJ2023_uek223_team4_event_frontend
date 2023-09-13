@@ -52,6 +52,15 @@ export default function SimplePaper() {
 
   return (
     <div>
+    
+      <Button
+       variant='contained' color='primary'
+      onClick={() => {
+        navigate('/landingsite');
+      }}>
+        Home
+      </Button>
+
       <h1>Events</h1>
 
       <Button size="small" color="success" variant="contained" onClick={handleAdd}>

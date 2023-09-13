@@ -1,8 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import ActiveUserContext from '../../Contexts/ActiveUserContext';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const SingleUserPage: React.FC = () => {
   const { user, loadActiveUser } = useContext(ActiveUserContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) {
@@ -12,6 +15,13 @@ const SingleUserPage: React.FC = () => {
 
   return (
     <div>
+                <Button
+       variant='contained' color='primary'
+      onClick={() => {
+        navigate('/landingsite');
+      }}>
+        Home
+      </Button>
       <h2>Benutzerprofil</h2>
       {user ? (
         <div>

@@ -33,6 +33,13 @@ const UserForm = ({ user, submitActionHandler }: UserProps) => {
 
   return (
     <>
+          <Button
+       variant='contained' color='primary'
+      onClick={() => {
+        navigate('/landingsite');
+      }}>
+        Home
+      </Button>
       <form onSubmit={formik.handleSubmit}>
         <Box sx={{ paddingTop: '15px' }}>
           <TextField

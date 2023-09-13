@@ -1,8 +1,10 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-// Test comment
 const LandingSite = () => {
+  const navigate = useNavigate();
+
   return (
     <Box
       display="flex"
@@ -12,16 +14,46 @@ const LandingSite = () => {
       minHeight="100vh"
       textAlign="center"
     >
-      <Typography variant='h3' >
+      <Typography variant='h3'>
         Welcome to OurSpace
       </Typography>
       <Typography variant='body1' paragraph>
-        Only for for logged in Users.
+        Only for logged-in Users.
       </Typography>
-      <Button variant='contained' color='primary'>
-        Get Started
-      </Button>
-
+      <Box display="flex" justifyContent="center" gap={2}>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={() => {
+            navigate('/event');
+          }}>
+          Event Page
+        </Button>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={() => {
+            navigate('/users');
+          }}>
+          User Page
+        </Button>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={() => {
+            navigate('/adminpage');
+          }}>
+          Admin Page
+        </Button>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={() => {
+            navigate('/singleuser');
+          }}>
+          Logged User
+        </Button>
+      </Box>
     </Box>
   );
 }

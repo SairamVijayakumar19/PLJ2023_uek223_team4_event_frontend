@@ -1,9 +1,19 @@
-import { Box, Container, Link } from "@mui/material";
+import { Box, Button, Container, Link } from "@mui/material";
 import { useStyles } from "./AdminPage.style";
+import { useNavigate } from "react-router-dom";
 
 const AdminPage = () => {
+  const navigate = useNavigate();
     const adminPageStyles= useStyles();
     return (
+      <div>
+              <Button
+       variant='contained' color='primary'
+      onClick={() => {
+        navigate('/landingsite');
+      }}>
+        Home
+      </Button>
         <Container fixed >
         <Box className={adminPageStyles.contentBox} >
             <h1>Admin Dashboard</h1>
@@ -14,6 +24,7 @@ const AdminPage = () => {
             </Container>
         </Box>
       </Container>
+      </div>
     );
 }
 
