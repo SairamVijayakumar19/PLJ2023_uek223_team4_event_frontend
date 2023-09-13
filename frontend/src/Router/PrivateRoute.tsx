@@ -49,13 +49,7 @@ const PrivateRoute: React.FC<Props> = ({
     activeUserContext.logout();
     return <Navigate to='/login' replace={true} />;
   }
-  const isAdmin = authorities.some((authority) => authority.name === Authorities.ADMIN_READ);
 
-
-  if (!isAdmin) {
-    // Wenn der Benutzer keine "Admin"-Rolle hat, umleite zur "unauthorized"-Seite
-    return <Navigate to='/login' replace={true} />;
-  }
   /**
    * Check if the active user has at least 1 of the needed authorities.
    * If no authorities are needed true is returned.

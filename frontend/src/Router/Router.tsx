@@ -8,6 +8,7 @@ import Eventpage from "../components/pages/EventPage/Eventpage";
 import EventForm from "../components/molecules/UserForm/EventForm";
 import AdminPage from "../components/pages/AdminPage/AdminPage";
 import Authorities from "../config/Authorities";
+import LandingSite from "../components/pages/LandingSite";
 
 
 /**
@@ -42,6 +43,7 @@ const Router = () => {
           <PrivateRoute authorities={[]} element={<UserPage />}></PrivateRoute>
         }
       />
+      
       <Route
         path="/event"
         element={
