@@ -16,12 +16,12 @@ const AuthorityService = {
   },
   hasAuthority: (authority: Authority) => {
     AuthorityService.initAuthoritySet();
-    return authoritySet.has(authority);
+    return authoritySet.has(authority.name);
   },
   hasAuthorities: (authorities: Authority[]) => {
     AuthorityService.initAuthoritySet();
     for (const element of authorities) {
-      if (!authoritySet.has(element)) {
+      if (!authoritySet.has(element.name)) {
         return false;
       }
     }
@@ -29,7 +29,7 @@ const AuthorityService = {
   },
   hasAnyAuthority: (authorities: Authority[]) => {
     for (const element of authorities) {
-      if (authoritySet.has(element)) {
+      if (authoritySet.has(element.name)) {
         return true;
       }
     }

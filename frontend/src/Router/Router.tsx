@@ -6,6 +6,9 @@ import UserTable from "../components/pages/UserPage/UserTable";
 import UserPage from "../components/pages/UserPage/UserPage";
 import Eventpage from "../components/pages/EventPage/Eventpage";
 import EventForm from "../components/molecules/UserForm/EventForm";
+import AdminPage from "../components/pages/AdminPage/AdminPage";
+import Authorities from "../config/Authorities";
+
 
 /**
  * Router component renders a route switch with all available pages
@@ -24,6 +27,10 @@ const Router = () => {
       <Route
         path={"/addevent"}
         element={<PrivateRoute authorities={[]} element={<EventForm />} />}
+      />
+      <Route
+        path={"/adminpage"}
+        element={<PrivateRoute authorities={[{ id: Authorities.ADMIN_READ, name: Authorities.ADMIN_READ }]} element={<AdminPage />} />}
       />
       <Route
         path={"/users"}

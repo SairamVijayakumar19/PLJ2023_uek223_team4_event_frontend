@@ -5,6 +5,7 @@ import ActiveUserContext from '../Contexts/ActiveUserContext';
 import AuthorityService from '../Services/AuthorityService';
 import { Authority } from '../types/models/Authority.model';
 import { Button } from '@mui/material';
+import Authorities from '../config/Authorities';
 
 interface Props {
   element: React.ReactElement;
@@ -46,6 +47,13 @@ const PrivateRoute: React.FC<Props> = ({
    */
   if (!isLoggedIn()) {
     activeUserContext.logout();
+    return <Navigate to='/login' replace={true} />;
+  }
+  const isAdmin = authorities.some((authority) => authority.name === Authorities.ADMIN_READ);
+
+
+  if (!isAdmin) {
+    // Wenn der Benutzer keine "Admin"-Rolle hat, umleite zur "unauthorized"-Seite
     return <Navigate to='/login' replace={true} />;
   }
   /**

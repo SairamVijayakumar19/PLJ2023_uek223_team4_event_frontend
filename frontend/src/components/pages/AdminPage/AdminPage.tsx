@@ -8,9 +8,9 @@ const AdminPage = () => {
         <Box className={adminPageStyles.contentBox} >
             <h1>Admin Dashboard</h1>
             <Container maxWidth="md" >
-              <Link id="manageusers" href="/admin/users">Manage Users</Link>
+              <Link id="manageusers" href="/useredit">Manage Users</Link>
               <br/>
-              <Link id="manageevents" href="/admin/events">Manage Events</Link>
+              <Link id="manageevents" href="event">Manage Events</Link>
             </Container>
         </Box>
       </Container>
